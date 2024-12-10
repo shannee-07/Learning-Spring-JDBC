@@ -2,13 +2,17 @@ package com.springjdbc.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import com.springjdbc.entities.Student;
 
+@Component("studentDao")
 public class StudentDAOImpl implements StudentDAO {
-
+	
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
@@ -21,7 +25,9 @@ public class StudentDAOImpl implements StudentDAO {
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}
-
+	
+	
+	@Autowired
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
