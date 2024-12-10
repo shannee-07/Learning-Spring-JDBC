@@ -26,6 +26,11 @@ public class StudentDAOImpl implements StudentDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	public StudentDAOImpl(JdbcTemplate jdbcTemplate) {
+		super();
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	@Override
 	public int update(Student student) {
 		String query = "UPDATE student SET name = ?, city = ? WHERE id = ?";
