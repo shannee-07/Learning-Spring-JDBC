@@ -11,8 +11,10 @@ public class App {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("com/springjdbc/config.xml");
 		StudentDAO studentDao = context.getBean("studentDao", StudentDAO.class);
-		Student student = new Student(13, "Mukesh","Lucknow");
-		int result = studentDao.insert(student);
+		Student student = new Student(13, "Mukesh Ambani","Mumbai");
+//		int result = studentDao.insert(student);
+//		int result = studentDao.update(student);
+		int result = studentDao.delete(2);
 		System.out.println("Rows affected: "+result);
 	}
 }

@@ -4,14 +4,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.springjdbc.entities.Student;
 
-public class StudentDAOImpl implements StudentDAO{
-	
+public class StudentDAOImpl implements StudentDAO {
+
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public int insert(Student student) {
-		String query = "INSERT INTO student (id, name, city) VALUES (?, ?, ?)";	
-		int r = this.jdbcTemplate.update(query, student.getId(), student.getName(), student.getAddress());
+		String query = "INSERT INTO student (id, name, city) VALUES (?, ?, ?)";
+		int r = this.jdbcTemplate.update(query, student.getId(), student.getName(), student.getCity());
 		return r;
 	}
 
@@ -21,6 +21,20 @@ public class StudentDAOImpl implements StudentDAO{
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public int update(Student student) {
+		String query = "UPDATE student SET name = ?, city = ? WHERE id = ?";
+		int r = this.jdbcTemplate.update(query, student.getName(), student.getCity(), student.getId());
+		return r;
+	}
+
+	@Override
+	public int delete(int id) {
+		String query = "DELETE FROM student WHERE id = ?";
+		int r = this.jdbcTemplate.update(query, id);
+		return r; 	
 	}
 
 }
