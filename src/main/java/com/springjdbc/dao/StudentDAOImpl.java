@@ -1,5 +1,7 @@
 package com.springjdbc.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -43,6 +45,11 @@ public class StudentDAOImpl implements StudentDAO {
 		String query = "SELECT * FROM student WHERE id = ?";
 		RowMapper<Student> rowMapper = new RowMapperImpl();
 		return this.jdbcTemplate.queryForObject(query, rowMapper, id);
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		return this.jdbcTemplate.query("SELECT * FROM student", new RowMapperImpl());
 	}
 
 }
